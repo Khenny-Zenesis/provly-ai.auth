@@ -1,0 +1,100 @@
+/* ========================================================================
+ * Provly Design System — Color Roles (Semantic Colors)
+ * ========================================================================
+ *
+ * APPLICATION LAYER — These are the colors to use in your UI.
+ * 
+ * ✅ USE THESE VARIABLES IN YOUR COMPONENT CSS.
+ * 
+ * Color roles assign semantic meaning to colors from the primitive
+ * palette. They define the *purpose* of a color rather than its
+ * raw value, enabling consistent theming and potential dark mode.
+ * 
+ * NAMING CONVENTION:
+ *   --role-{role-name}        (Generic roles)
+ *   --provly-role-{role-name} (Provly-branded roles)
+ * 
+ * ROLE CATEGORIES:
+ *   • Primary     — Main brand/action color and its variants
+ *   • Secondary   — Supporting accent color
+ *   • Tertiary    — Third accent color for variety
+ *   • Success     — Positive/confirmation states
+ *   • Warning     — Caution states
+ *   • Error       — Destructive/error states
+ *   • Info        — Informational states
+ *   • Neutral     — Backgrounds, text, borders
+ *   • Surface     — Container/card backgrounds
+ * 
+ * ROLE MODIFIERS:
+ *   • {role}               — The base color (e.g. button background)
+ *   • on-{role}            — Text/icon color ON the base color
+ *   • {role}-container     — Lighter variant for container backgrounds
+ *   • on-{role}-container  — Text/icon color ON the container
+ *
+ * Auto-generated on: 2026-09-05T09:54:02.358Z
+ * Source: provly-design-tokens.tokens.json
+ * Generator: design-tokens-to-css.js
+ *
+ * DO NOT EDIT MANUALLY — regenerate from design tokens instead.
+ * ======================================================================== */
+
+:root {
+  /* ── Generic Color Roles ─────────────────────────────── */
+
+  --role-primary: #303ad0;
+  --role-on-primary: #ffffff;
+  --role-primary-container: #d5d8f6;
+  --role-on-primary-container: #1c237d;
+  --role-secondary: #1146bb;
+  --role-on-secondary: #ffffff;
+  --role-secondary-container: #d0defb;
+  --role-on-secondary-container: #0d358c;
+  --role-tertiary: #282aa4;
+  --role-on-tertiary: #ffffff;
+  --role-tertiary-container: #d6d7f5;
+  --role-on-tertiary-container: #1e207b;
+  --role-surface: #f9fafb;
+  --role-on-surface: #16181d;
+  --role-surface-variant: #eaebeb;
+  --role-on-surface-variant: #4b4c4e;
+
+  /* ── Provly Color Roles ──────────────────────────────── */
+
+  --provly-role-provly-primary: #1f4b43;
+  --provly-role-provly-on-primary: #ffffff;
+  --provly-role-provly-primary-container: #dbf0ec;
+  --provly-role-provly-on-primary-container: #2d6c61;
+  --provly-role-provly-secondary: #405a8c;
+  --provly-role-provly-on-secondary: #ffffff;
+  --provly-role-provly-secondary-container: #dce3ef;
+  --provly-role-provly-on-secondary-container: #304469;
+  --provly-role-provly-accent-tertiary: #6f507c;
+  --provly-role-provly-accent-on-tertiary: #ffffff;
+  --provly-role-provly-accent-tertiary-container: #e8e0eb;
+  --provly-role-provly-accent-on-tertiary-container: #533c5d;
+  --provly-role-provly-success: #1eae53;
+  --provly-role-provly-on-success: #ffffff;
+  --provly-role-provly-success-container: #d4f7e1;
+  --provly-role-provly-on-success-container: #17823e;
+  --provly-role-provly-warning: #c47e08;
+  --provly-role-provly-on-warning: #000000;
+  --provly-role-provly-warning-container: #fdecce;
+  --provly-role-provly-on-warning-container: #935f06;
+  --provly-role-provly-error: #bc1010;
+  --provly-role-provly-on-error: #ffffff;
+  --provly-role-provly-error-container: #fbd0d0;
+  --provly-role-provly-on-error-container: #8d0c0c;
+  --provly-role-provly-info: #0950c3;
+  --provly-role-provly-on-info: #ffffff;
+  --provly-role-provly-info-container: #cee0fd;
+  --provly-role-provly-on-info-container: #073c92;
+  --provly-role-provly-neutral: #3d4a5c;
+  --provly-role-provly-on-neutral: #ffffff;
+  --provly-role-provly-neutral-container: #e0e5eb;
+  --provly-role-provly-on-neutral-container: #3d4a5c;
+  --provly-role-provly-neutral-variant: #556377;
+  --provly-role-provly-on-neutral-variant: #ffffff;
+  --provly-role-provly-neutral-variant-container: #e1e5ea;
+  --provly-role-provly-on-neutral-variant-copntainer: #404a59;
+
+}

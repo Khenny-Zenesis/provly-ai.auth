@@ -1,0 +1,311 @@
+/* ========================================================================
+ * Provly Design System — Primitive Colors
+ * ========================================================================
+ *
+ * FOUNDATION LAYER — These are the raw color palettes.
+ * 
+ * ⚠️  WARNING: DO NOT USE THESE VARIABLES DIRECTLY IN UI COMPONENTS.
+ * 
+ * Primitive colors are the low-level tonal palettes from which
+ * semantic "color roles" are derived. They are included here for:
+ *   - Reference and documentation purposes
+ *   - Potential use in advanced theming/dark mode calculations
+ *   - Debugging and design system inspection
+ * 
+ * For UI development, always use the color role tokens from
+ * provly-color-roles.css instead.
+ * 
+ * NAMING CONVENTION:
+ *   --primitive-{palette}-{tonal-step}       (Generic primitives)
+ *   --provly-primitive-{palette}-{tonal-step} (Provly primitives)
+ * 
+ * TONAL STEPS: 0 (darkest) → 100 (lightest/white)
+ *   0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 92, 95, 98, 99, 100
+ *
+ * Auto-generated on: 2026-09-05T09:54:02.355Z
+ * Source: provly-design-tokens.tokens.json
+ * Generator: design-tokens-to-css.js
+ *
+ * DO NOT EDIT MANUALLY — regenerate from design tokens instead.
+ * ======================================================================== */
+
+:root {
+  /* ── Generic Primitives Colors ───────────────────────── */
+
+  /* key colors group */
+  --primitive-primary-key-color: #303ad0;
+  --primitive-secondary-key-color: #5787f0;
+  --primitive-tertiary-key-color: #191a66;
+  --primitive-neutral-key-color: #16181d;
+  --primitive-neutral-variant-key-color: #38393a;
+  --primitive-error-key-color: #e10b0b;
+
+  /* primary color palette */
+  --primitive-primary-0: #000000;
+  --primitive-primary-10: #090c2a;
+  --primitive-primary-20: #131753;
+  --primitive-primary-30: #1c237d;
+  --primitive-primary-40: #262ea6;
+  --primitive-primary-50: #303ad0;
+  --primitive-primary-60: #5961d9;
+  --primitive-primary-70: #8289e3;
+  --primitive-primary-80: #acb0ec;
+  --primitive-primary-90: #d5d8f6;
+  --primitive-primary-95: #eaebfa;
+  --primitive-primary-98: #f7f7fd;
+  --primitive-primary-99: #fbfbfe;
+  --primitive-primary-100: #ffffff;
+
+  /* secondary color palette */
+  --primitive-secondary0: #000000;
+  --primitive-secondary10: #04122f;
+  --primitive-secondary20: #04122f;
+  --primitive-secondary30: #0d358c;
+  --primitive-secondary40: #1146bb;
+  --primitive-secondary50: #1558ea;
+  --primitive-secondary60: #4479ee;
+  --primitive-secondary70: #739bf2;
+  --primitive-secondary80: #a1bcf7;
+  --primitive-secondary90: #d0defb;
+  --primitive-secondary95: #e8eefd;
+  --primitive-secondary98: #f6f8fe;
+  --primitive-secondary99: #fcfcfc;
+  --primitive-secondary100: #ffffff;
+
+  /* tertiary color palette */
+  --primitive-tertiary-0: #000000;
+  --primitive-tertiary-10: #0a0b29;
+  --primitive-tertiary-20: #141552;
+  --primitive-tertiary-30: #1e207b;
+  --primitive-tertiary-40: #282aa4;
+  --primitive-tertiary-50: #3235cd;
+  --primitive-tertiary-60: #5b5dd7;
+  --primitive-tertiary-70: #8486e1;
+  --primitive-tertiary-80: #adaeeb;
+  --primitive-tertiary-90: #d6d7f5;
+  --primitive-tertiary-95: #ebebfa;
+  --primitive-tertiary-98: #f7f7fd;
+  --primitive-tertiary-99: #fbfbfe;
+  --primitive-tertiary-100: #ffffff;
+
+  /* neutral color palette */
+  --primitive-neutral0: #000000;
+  --primitive-neutral10: #16181d;
+  --primitive-neutral20: #2c303a;
+  --primitive-neutral30: #424857;
+  --primitive-neutral40: #586074;
+  --primitive-neutral50: #6e7891;
+  --primitive-neutral60: #8b93a7;
+  --primitive-neutral70: #a8aebd;
+  --primitive-neutral80: #c5c9d3;
+  --primitive-neutral90: #e2e4e9;
+  --primitive-neutral95: #f0f1f4;
+  --primitive-neutral98: #f9fafb;
+  --primitive-neutral99: #fcfcfd;
+  --primitive-neutral100: #ffffff;
+
+  /* neutral variant color palette */
+  --primitive-neutral-vabriant0: #000000;
+  --primitive-neutral-vabriant10: #19191a;
+  --primitive-neutral-vabriant20: #323334;
+  --primitive-neutral-vabriant30: #4b4c4e;
+  --primitive-neutral-vabriant40: #646668;
+  --primitive-neutral-vabriant50: #7d8082;
+  --primitive-neutral-vabriant60: #97999b;
+  --primitive-neutral-vabriant70: #b1b2b4;
+  --primitive-neutral-vabriant80: #cbcccd;
+  --primitive-neutral-vabriant92: #eaebeb;
+  --primitive-neutral-vabriant95: #f2f2f2;
+  --primitive-neutral-vabriant98: #fafafa;
+  --primitive-neutral-vabriant99: #fcfcfc;
+  --primitive-neutral-vabriant100: #ffffff;
+
+  /* error color palette */
+  --primitive-error0: #ffffff;
+  --primitive-error10: #310202;
+  --primitive-error20: #610505;
+  --primitive-error30: #920707;
+  --primitive-error40: #c30909;
+  --primitive-error50: #f40b0b;
+  --primitive-error60: #f63c3c;
+  --primitive-error70: #f86d6d;
+  --primitive-error82: #e9e9e9;
+  --primitive-error92: #fdd8d8;
+  --primitive-error95: #fee7e7;
+  --primitive-error98: #fff5f5;
+  --primitive-error99: #fffafa;
+  --primitive-error100: #ffffff;
+
+  /* ── Provly-Branded Primitives ───────────────────────── */
+
+  /* provly key colors group */
+  --provly-primitive-provly-primary-key-color: #1f4b43;
+  --provly-primitive-provly-secondary-key-color: #1b263b;
+  --provly-primitive-provly-accenttertiary-key-color: #7d5a8c;
+  --provly-primitive-provly-neutral-supporting-key-color: #ffffff;
+  --provly-primitive-provly-semantic-success-key-color: #22c55e;
+  --provly-primitive-provly-semantic-warning-color: #f59e0b;
+  --provly-primitive-provly-error-key-color: #ef4444;
+  --provly-primitive-provly-info-key-color: #3b82f6;
+  --provly-primitive-provly-neutral-key-color: #94a3b8;
+  --provly-primitive-provly-neutral-variant-key-color: #64748b;
+
+  /* provly primary color palette */
+  --provly-primitive-provly-primary0: #000000;
+  --provly-primitive-provly-primary10: #0f2420;
+  --provly-primitive-provly-primary20: #1e4840;
+  --provly-primitive-provly-primary30: #2d6c61;
+  --provly-primitive-provly-primary40: #3c9081;
+  --provly-primitive-provly-primary50: #4bb4a1;
+  --provly-primitive-provly-primary60: #6fc3b4;
+  --provly-primitive-provly-primary70: #93d2c7;
+  --provly-primitive-provly-primary80: #b7e1d9;
+  --provly-primitive-provly-primary90: #dbf0ec;
+  --provly-primitive-provly-primary92: #e2f3f0;
+  --provly-primitive-provly-primary95: #edf8f6;
+  --provly-primitive-provly-primary98: #f8fcfb;
+  --provly-primitive-provly-primary100: #ffffff;
+
+  /* provly secondary color palette */
+  --provly-primitive-provly-secondary0: #000000;
+  --provly-primitive-provly-secondary10: #101723;
+  --provly-primitive-provly-seconday20: #202d46;
+  --provly-primitive-provly-secondary30: #304469;
+  --provly-primitive-provly-secondary40: #405a8c;
+  --provly-primitive-provly-seconday50: #5071af;
+  --provly-primitive-provly-secondary60: #a2b2d0;
+  --provly-primitive-provly-seconday70: #96aacf;
+  --provly-primitive-provly-secondary-80: #c3cde1;
+  --provly-primitive-provly-secondary-90: #dce3ef;
+  --provly-primitive-provly-secondary92: #e3e8f2;
+  --provly-primitive-provly-secondary95: #edf1f7;
+  --provly-primitive-provly-seconday98: #f8f9fc;
+  --provly-primitive-provly-secondary100: #ffffff;
+
+  /* provly accent tertiary color palette */
+  --provly-primitive-provly-accent-tertiary0: #000000;
+  --provly-primitive-provly-accent-tertiary10: #1c141f;
+  --provly-primitive-provly-accent-tertiary20: #37283e;
+  --provly-primitive-provly-accent-tertiary30: #533c5d;
+  --provly-primitive-provly-accent-tertiary40: #6f507c;
+  --provly-primitive-provly-accent-tertiary50: #8b649b;
+  --provly-primitive-provly-accent-tertiary60: #a283af;
+  --provly-primitive-provly-accent-tertiary70: #b9a2c3;
+  --provly-primitive-provly-accent-tertiary80: #d0c1d7;
+  --provly-primitive-provly-accent-tertiary90: #e8e0eb;
+  --provly-primitive-provly-accent-tertiary95: #f3eff5;
+  --provly-primitive-provly-accent-tertiary98: #faf9fb;
+  --provly-primitive-provly-accent-tertiary99: #fdfcfd;
+  --provly-primitive-provly-accent-tertiary100: #ffffff;
+
+  --provly-primitive-provly-neutral0: #000000;
+  --provly-primitive-provly-neutral10: #191919;
+  --provly-primitive-provly-neutral20: #333333;
+  --provly-primitive-provly-neutral30: #4c4c4c;
+  --provly-primitive-provly-neutral40: #666666;
+  --provly-primitive-provly-neutral50: #808080;
+  --provly-primitive-provly-neutral60: #999999;
+  --provly-primitive-provly-neutral70: #b3b3b3;
+  --provly-primitive-provly-neutral80: #cccccc;
+  --provly-primitive-provly-neutral90: #e6e6e6;
+  --provly-primitive-provly-neutral95: #f2f2f2;
+  --provly-primitive-provly-neutral98: #fafafa;
+  --provly-primitive-provly-neutral99: #fcfcfc;
+  --provly-primitive-provly-neutral100: #ffffff;
+  /* provly semantic success color palette */
+  --provly-primitive-provly-semantic-success-color0: #000000;
+  --provly-primitive-provly-semantic-success-color10: #082b15;
+  --provly-primitive-provly-semantic-success-color20: #0f572a;
+  --provly-primitive-provly-semantic-success-color30: #17823e;
+  --provly-primitive-provly-semantic-success-color40: #1eae53;
+  --provly-primitive-provly-semantic-success-color50: #26d968;
+  --provly-primitive-provly-semantic-success-color60: #51e186;
+  --provly-primitive-provly-semantic-success-color70: #7de8a4;
+  --provly-primitive-provly-semantic-success-color80: #a8f0c3;
+  --provly-primitive-provly-semantic-success-color90: #d4f7e1;
+  --provly-primitive-provly-semantic-success-color95: #e9fbf0;
+  --provly-primitive-provly-semantic-success-color98: #f6fdf9;
+  --provly-primitive-provly-semantic-success-color99: #fbfefc;
+  --provly-primitive-provly-semantic-success-color100: #ffffff;
+
+  /* provly semantic warning color palette */
+  --provly-primitive-provly-semantic-warning-color0: #000000;
+  --provly-primitive-provly-semantic-warning-color10: #312002;
+  --provly-primitive-provly-semantic-warning-color20: #623f04;
+  --provly-primitive-provly-semantic-warning-color30: #935f06;
+  --provly-primitive-provly-semantic-warning-color40: #c47e08;
+  --provly-primitive-provly-semantic-warning-color50: #f59e0b;
+  --provly-primitive-provly-semantic-warning-color60: #f7b13b;
+  --provly-primitive-provly-semantic-warning-color70: #f9c56c;
+  --provly-primitive-provly-semantic-warning-color80: #fbd89d;
+  --provly-primitive-provly-semantic-warning-color90: #fdecce;
+  --provly-primitive-provly-semantic-warning-color95: #fef5e7;
+  --provly-primitive-provly-semantic-warning-color98: #fffbf5;
+  --provly-primitive-provly-semantic-warning-color99: #fffdfa;
+  --provly-primitive-provly-semantic-warning-color100: #ffffff;
+
+  /* provly semantic error color palette */
+  --provly-primitive-provly-semantic-error-color0: #000000;
+  --provly-primitive-provly-semantic-error-color10: #2f0404;
+  --provly-primitive-provly-semantic-error-color-60: #ef4444;
+  --provly-primitive-provly-semantic-error-color-70: #f37272;
+  --provly-primitive-provly-semantic-error-color-80: #f7a1a1;
+  --provly-primitive-provly-semantic-error-color-90: #fbd0d0;
+  --provly-primitive-provly-semantic-error-color-95: #fde8e8;
+  --provly-primitive-provly-semantic-error-color-98: #fef6f6;
+  --provly-primitive-provly-semantic-error-color-99: #fffafa;
+  --provly-primitive-provly-semantic-error-color-100: #ffffff;
+  --provly-primitive-provly-semantic-error-color-20: #5e0808;
+  --provly-primitive-provly-semantic-error-color-30: #8d0c0c;
+  --provly-primitive-provly-semantic-error-color-40: #bc1010;
+  --provly-primitive-provly-semantic-error-color-50: #eb1414;
+
+  /* provly semantic info color pallete */
+  --provly-primitive-provly-semantic-info-color-palette0: #000000;
+  --provly-primitive-provly-semantic-info-color-palette-2: #021431;
+  --provly-primitive-provly-semantic-info-color-palette20: #042862;
+  --provly-primitive-provly-semantic-info-color-palette30: #073c92;
+  --provly-primitive-provly-semantic-info-color-palette40: #0950c3;
+  --provly-primitive-provly-semantic-info-color-palette50: #0b64f4;
+  --provly-primitive-provly-semantic-info-color-palette60: #3c83f6;
+  --provly-primitive-provly-semantic-info-color-palette70: #6da2f8;
+  --provly-primitive-provly-semantic-info-color-palette80: #9dc1fb;
+  --provly-primitive-provly-semantic-info-color-palette90: #cee0fd;
+  --provly-primitive-provly-semantic-info-color-palette95: #f0f2f5;
+  --provly-primitive-provly-semantic-info-color-palette98: #f9fafb;
+  --provly-primitive-provly-semantic-info-color-palette99: #fafcff;
+  --provly-primitive-provly-semantic-info-color-palette100: #ffffff;
+
+  /* provly neutral 1 color palette */
+  --provly-primitive-provly-neutral-1-color-palette0: #000000;
+  --provly-primitive-provly-neutral-1-color-palette10: #14191f;
+  --provly-primitive-provly-neutral-1-color-palette20: #29313d;
+  --provly-primitive-provly-neutral-1-color-palette30: #3d4a5c;
+  --provly-primitive-provly-neutral-1-color-palette40: #51637b;
+  --provly-primitive-provly-neutral-1-color-palette50: #667b99;
+  --provly-primitive-provly-neutral-1-color-palette60: #8496ae;
+  --provly-primitive-provly-neutral-1-color-palette70: #a3b0c2;
+  --provly-primitive-provly-neutral-1-color-palette80: #c2cad6;
+  --provly-primitive-provly-neutral-1-color-palette90: #e0e5eb;
+  --provly-primitive-provly-neutral-1-color-palette95: #f0f2f5;
+  --provly-primitive-provly-neutral-1-color-palette98: #f9fafb;
+  --provly-primitive-provly-neutral-1-color-palette99: #fcfcfd;
+  --provly-primitive-provly-neutral-1-color-palette100: #ffffff;
+
+  /* provly neutral variant color palette */
+  --provly-primitive-provly-neutral-variant-color-palette0: #000000;
+  --provly-primitive-provly-neutral-variant-color-palette10: #15191e;
+  --provly-primitive-provly-neutral-variant-color-palette20: #2b323b;
+  --provly-primitive-provly-neutral-variant-color-palette30: #404a59;
+  --provly-primitive-provly-neutral-variant-color-palette40: #556377;
+  --provly-primitive-provly-neutral-variant-color-palette50: #6b7c94;
+  --provly-primitive-provly-neutral-variant-color-palette60: #8896aa;
+  --provly-primitive-provly-neutral-variant-color-palette70: #a6b0bf;
+  --provly-primitive-provly-neutral-variant-color-palette80: #c4cbd4;
+  --provly-primitive-provly-neutral-variant-color-palette90: #e1e5ea;
+  --provly-primitive-provly-neutral-variant-color-palette95: #f0f2f4;
+  --provly-primitive-provly-neutral-variant-color-palette98: #f9fafb;
+  --provly-primitive-provly-neutral-variant-color-palette99: #fcfcfd;
+  --provly-primitive-provly-neutral-variant-color-palette100: #ffffff;
+
+}

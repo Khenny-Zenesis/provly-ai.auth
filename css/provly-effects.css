@@ -1,0 +1,35 @@
+/* ========================================================================
+ * Provly Design System — Effects (Shadows)
+ * ========================================================================
+ *
+ * Shadow and elevation effects for the Provly design system.
+ * 
+ * ELEVATION SCALE:
+ *   • soft    — Subtle, low-elevation shadow (cards, hover states)
+ *   • medium  — Mid-elevation shadow (dropdowns, tooltips)
+ *   • hard    — High-elevation shadow (modals, dialogs)
+ * 
+ * USAGE:
+ *   .card { box-shadow: var(--provly-shadow-provly-soft-shadow); }
+ *
+ * Auto-generated on: 2026-09-05T09:54:02.359Z
+ * Source: provly-design-tokens.tokens.json
+ * Generator: design-tokens-to-css.js
+ *
+ * DO NOT EDIT MANUALLY — regenerate from design tokens instead.
+ * ======================================================================== */
+
+:root {
+  /** hard shadow */
+  --provly-shadow-hard-shadow: 4px 6px 8px 0px rgba(0, 0, 0, 0.251);
+  /** Multi-layer shadow: medium shadow */
+  --provly-shadow-medium-shadow: 4px 6px 8px 0px rgba(0, 0, 0, 0.251), 2px 2px 16px 0px rgba(0, 0, 0, 0.278);
+  /** soft shadow */
+  --provly-shadow-soft-shadow: 2px 2px 20px 0px rgba(0, 0, 0, 0.122);
+  /** provly hard shadow */
+  --provly-shadow-provly-hard-shadow: 2px 6px 20px 0px rgba(0, 0, 0, 0.161);
+  /** provly medium shadow */
+  --provly-shadow-provly-medium-shadow: 1px 4px 16px 0px rgba(0, 0, 0, 0.122);
+  /** provly soft shadow */
+  --provly-shadow-provly-soft-shadow: 1px 2px 8px 0px rgba(0, 0, 0, 0.078);
+}

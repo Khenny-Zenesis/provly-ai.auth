@@ -1,0 +1,55 @@
+/* ========================================================================
+ * Provly Design System — Spacing Scale
+ * ========================================================================
+ *
+ * Spacing tokens converted from pixels to rem units (base: 16px).
+ * 
+ * SCALE (Provly):
+ *   no-spacing       →  0
+ *   extra-small      →  4px   (0.25rem)
+ *   small            →  8px   (0.5rem)
+ *   medium           → 12px   (0.75rem)
+ *   base             → 16px   (1rem)
+ *   large            → 24px   (1.5rem)
+ *   extra-large      → 32px   (2rem)
+ *   2x-large         → 40px   (2.5rem)
+ *   3x-large         → 48px   (3rem)
+ *   4x-large         → 64px   (4rem)
+ * 
+ * USAGE:
+ *   .section { padding: var(--provly-spacing-provly-base-spacing); }
+ *   .stack > * + * { margin-top: var(--provly-spacing-provly-small-spacing); }
+ *
+ * Auto-generated on: 2026-09-05T09:54:02.360Z
+ * Source: provly-design-tokens.tokens.json
+ * Generator: design-tokens-to-css.js
+ *
+ * DO NOT EDIT MANUALLY — regenerate from design tokens instead.
+ * ======================================================================== */
+
+:root {
+  /* ── Generic Spacing Scale ───────────────────────────── */
+
+  --spacing-no-spacing: 0; /* 0px */
+  --spacing-extra-small-spacing: 0.25rem; /* 4px */
+  --spacing-small-spacing: 0.5rem; /* 8px */
+  --spacing-medium-spacing: 0.75rem; /* 12px */
+  --spacing-base-spacing: 1rem; /* 16px */
+  --spacing-large-spacing: 1.25rem; /* 20px */
+  --spacing-extra-large-spacing: 1.5rem; /* 24px */
+  --spacing-very-large-spacing: 2rem; /* 32px */
+
+  /* ── Provly Spacing Scale ────────────────────────────── */
+
+  --provly-spacing-provly-no-spacing: 0; /* 0px */
+  --provly-spacing-provly-extra-small-spacing: 0.25rem; /* 4px */
+  --provly-spacing-provly-small-spacing: 0.5rem; /* 8px */
+  --provly-spacing-provly-medium-nspacing: 0.75rem; /* 12px */
+  --provly-spacing-provly-base-spacing: 1rem; /* 16px */
+  --provly-spacing-provly-large-spacing: 1.5rem; /* 24px */
+  --provly-spacing-provly-extra-large-spacing: 2rem; /* 32px */
+  --provly-spacing-provly-2x-large: 2.5rem; /* 40px */
+  --provly-spacing-provly-3x-large: 3rem; /* 48px */
+  --provly-spacing-provly-4-large-spacing: 4rem; /* 64px */
+
+}

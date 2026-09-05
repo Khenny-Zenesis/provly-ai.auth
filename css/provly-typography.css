@@ -1,0 +1,158 @@
+/* ========================================================================
+ * Provly Design System — Typography
+ * ========================================================================
+ *
+ * Typography tokens providing a consistent type scale.
+ * 
+ * FONT FAMILIES:
+ *   • Space Grotesk — Display and title styles (brand typeface)
+ *   • Inter         — Body, headline, and label styles (UI typeface)
+ * 
+ * TYPE SCALE:
+ *   Display  (lg/md/sm)  — Hero sections, major headings
+ *   Headline (lg/md/sm)  — Section headings
+ *   Title    (lg/md/sm)  — Component titles, card headers
+ *   Body     (lg/md/sm)  — Paragraph text, descriptions
+ *   Label    (lg/md/sm)  — Buttons, form labels, captions
+ * 
+ * EACH STYLE PROVIDES THESE VARIABLES:
+ *   --provly-type-{style}-font-size
+ *   --provly-type-{style}-font-family
+ *   --provly-type-{style}-font-weight
+ *   --provly-type-{style}-line-height
+ *   --provly-type-{style}-letter-spacing
+ * 
+ * USAGE:
+ *   h1 {
+ *     font-size: var(--provly-type-provly-display-large-font-size);
+ *     font-family: var(--provly-type-provly-display-large-font-family);
+ *     font-weight: var(--provly-type-provly-display-large-font-weight);
+ *     line-height: var(--provly-type-provly-display-large-line-height);
+ *     letter-spacing: var(--provly-type-provly-display-large-letter-spacing);
+ *   }
+ *
+ * Auto-generated on: 2026-09-05T09:54:02.364Z
+ * Source: provly-design-tokens.tokens.json
+ * Generator: design-tokens-to-css.js
+ *
+ * DO NOT EDIT MANUALLY — regenerate from design tokens instead.
+ * ======================================================================== */
+
+:root {
+  /* ── Provly Typography System ───────────────────────────── */
+
+  /* provly display large */
+  --provly-type-provly-display-large-font-size: 3.75rem; /* 60px */
+  --provly-type-provly-display-large-font-family: 'Space Grotesk', sans-serif;
+  --provly-type-provly-display-large-font-weight: 500;
+  --provly-type-provly-display-large-line-height: 5.625rem; /* 90px */
+  --provly-type-provly-display-large-letter-spacing: -0.1875rem; /* -3px */
+
+  /* provly display medium */
+  --provly-type-provly-display-medium-font-size: 3.125rem; /* 50px */
+  --provly-type-provly-display-medium-font-family: 'Space Grotesk', sans-serif;
+  --provly-type-provly-display-medium-font-weight: 500;
+  --provly-type-provly-display-medium-line-height: 4.6875rem; /* 75px */
+  --provly-type-provly-display-medium-letter-spacing: -0.125rem; /* -2px */
+
+  /* provly display small */
+  --provly-type-provly-display-small-font-size: 2.5rem; /* 40px */
+  --provly-type-provly-display-small-font-family: 'Space Grotesk', sans-serif;
+  --provly-type-provly-display-small-font-weight: 500;
+  --provly-type-provly-display-small-line-height: 3.75rem; /* 60px */
+  --provly-type-provly-display-small-letter-spacing: -0.109375rem; /* -1.75px */
+
+  /* provly headline large */
+  --provly-type-provly-headline-large-font-size: 2rem; /* 32px */
+  --provly-type-provly-headline-large-font-family: 'Inter', sans-serif;
+  --provly-type-provly-headline-large-font-weight: 500;
+  --provly-type-provly-headline-large-line-height: 3rem; /* 48px */
+  --provly-type-provly-headline-large-letter-spacing: -0.09375rem; /* -1.5px */
+
+  /* provly headline medium */
+  --provly-type-provly-headline-medium-font-size: 1.75rem; /* 28px */
+  --provly-type-provly-headline-medium-font-family: 'Inter', sans-serif;
+  --provly-type-provly-headline-medium-font-weight: 500;
+  --provly-type-provly-headline-medium-line-height: 2.625rem; /* 42px */
+  --provly-type-provly-headline-medium-letter-spacing: -0.09375rem; /* -1.5px */
+
+  /* provly headline small */
+  --provly-type-provly-headline-small-font-size: 1.5rem; /* 24px */
+  --provly-type-provly-headline-small-font-family: 'Inter', sans-serif;
+  --provly-type-provly-headline-small-font-weight: 500;
+  --provly-type-provly-headline-small-line-height: 2.25rem; /* 36px */
+  --provly-type-provly-headline-small-letter-spacing: -0.0625rem; /* -1px */
+
+  /* provly title large */
+  --provly-type-provly-title-large-font-size: 2rem; /* 32px */
+  --provly-type-provly-title-large-font-family: 'Space Grotesk', sans-serif;
+  --provly-type-provly-title-large-font-weight: 700;
+  --provly-type-provly-title-large-line-height: 3rem; /* 48px */
+  --provly-type-provly-title-large-letter-spacing: 0.053125rem; /* 0.85px */
+
+  /* provly title medium */
+  --provly-type-provly-title-medium-font-size: 1.375rem; /* 22px */
+  --provly-type-provly-title-medium-font-family: 'Space Grotesk', sans-serif;
+  --provly-type-provly-title-medium-font-weight: 700;
+  --provly-type-provly-title-medium-line-height: 2.0625rem; /* 33px */
+  --provly-type-provly-title-medium-letter-spacing: -0.0625rem; /* -1px */
+
+  /* provly title small */
+  --provly-type-provly-title-small-font-size: 1.25rem; /* 20px */
+  --provly-type-provly-title-small-font-family: 'Space Grotesk', sans-serif;
+  --provly-type-provly-title-small-font-weight: 500;
+  --provly-type-provly-title-small-line-height: 1.875rem; /* 30px */
+  --provly-type-provly-title-small-letter-spacing: -0.0625rem; /* -1px */
+
+  /* provly body large */
+  --provly-type-provly-body-large-font-size: 1.125rem; /* 18px */
+  --provly-type-provly-body-large-font-family: 'Inter', sans-serif;
+  --provly-type-provly-body-large-font-weight: 400;
+  --provly-type-provly-body-large-line-height: 1.6875rem; /* 27px */
+  --provly-type-provly-body-large-letter-spacing: -0.0625rem; /* -1px */
+
+  /* provly body medium */
+  --provly-type-provly-body-medium-font-size: 1rem; /* 16px */
+  --provly-type-provly-body-medium-font-family: 'Inter', sans-serif;
+  --provly-type-provly-body-medium-font-weight: 400;
+  --provly-type-provly-body-medium-line-height: 1.5rem; /* 24px */
+  --provly-type-provly-body-medium-letter-spacing: -0.0625rem; /* -1px */
+
+  /* provly body small */
+  --provly-type-provly-body-small-font-size: 0.875rem; /* 14px */
+  --provly-type-provly-body-small-font-family: 'Inter', sans-serif;
+  --provly-type-provly-body-small-font-weight: 400;
+  --provly-type-provly-body-small-line-height: 1.3125rem; /* 21px */
+  --provly-type-provly-body-small-letter-spacing: -0.0625rem; /* -1px */
+
+  /* provly label large */
+  --provly-type-provly-label-large-font-size: 0.875rem; /* 14px */
+  --provly-type-provly-label-large-font-family: 'Inter', sans-serif;
+  --provly-type-provly-label-large-font-weight: 500;
+  --provly-type-provly-label-large-line-height: 1.3125rem; /* 21px */
+  --provly-type-provly-label-large-letter-spacing: -0.0625rem; /* -1px */
+
+  /* provly label medium */
+  --provly-type-provly-label-medium-font-size: 0.75rem; /* 12px */
+  --provly-type-provly-label-medium-font-family: 'Inter', sans-serif;
+  --provly-type-provly-label-medium-font-weight: 500;
+  --provly-type-provly-label-medium-line-height: 1.125rem; /* 18px */
+  --provly-type-provly-label-medium-letter-spacing: -0.0625rem; /* -1px */
+
+  /* provly label small */
+  --provly-type-provly-label-small-font-size: 0.6875rem; /* 11px */
+  --provly-type-provly-label-small-font-family: 'Inter', sans-serif;
+  --provly-type-provly-label-small-font-weight: 500;
+  --provly-type-provly-label-small-line-height: 1.0313rem; /* 16.5px */
+  --provly-type-provly-label-small-letter-spacing: -0.0625rem; /* -1px */
+
+  /* ── "fn" Typography Variants ──────────────────────────── */
+
+  /* fn-display large */
+  --provly-type-fn-display-large-font-size: 3.5625rem; /* 57px */
+  --provly-type-fn-display-large-font-family: 'Inter', sans-serif;
+  --provly-type-fn-display-large-font-weight: 500;
+  --provly-type-fn-display-large-line-height: 5.3438rem; /* 85.5px */
+  --provly-type-fn-display-large-letter-spacing: 0; /* 0px */
+
+}

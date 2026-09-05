@@ -1,0 +1,33 @@
+/* ========================================================================
+ * Provly Design System — Border Radius
+ * ========================================================================
+ *
+ * Border radius tokens for consistent rounded corners.
+ * 
+ * SCALE:
+ *   small       →  4px  (0.25rem)  — Subtle rounding
+ *   medium      →  8px  (0.5rem)   — Standard component rounding
+ *   large       → 12px  (0.75rem)  — Prominent rounding
+ *   extra-large → 16px  (1rem)     — Large card rounding
+ *   full-pill   → 9999px           — Pill/capsule shape
+ * 
+ * USAGE:
+ *   .button { border-radius: var(--provly-radius-provly-medium); }
+ *   .tag    { border-radius: var(--provly-radius-provly-full-pill); }
+ *
+ * Auto-generated on: 2026-09-05T09:54:02.362Z
+ * Source: provly-design-tokens.tokens.json
+ * Generator: design-tokens-to-css.js
+ *
+ * DO NOT EDIT MANUALLY — regenerate from design tokens instead.
+ * ======================================================================== */
+
+:root {
+  /* ── Provly Border Radius Scale ────────────────────────── */
+
+  --provly-radius-provly-small: 0.25rem; /* 4px */
+  --provly-radius-provly-medium: 0.5rem; /* 8px */
+  --provly-radius-provly-large: 0.75rem; /* 12px */
+  --provly-radius-provly-extra-large: 1rem; /* 16px */
+  --provly-radius-provly-full-pill: 9999px; /* Full pill/circle shape */
+}

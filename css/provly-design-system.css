@@ -1,0 +1,57 @@
+/* ========================================================================
+ * Provly Design System — Combined Entry Point
+ * ========================================================================
+ *
+ * Import this single file to load the entire Provly design token system.
+ * 
+ * FILES INCLUDED:
+ *   1. provly-primitives.css    — Foundation color palettes (DO NOT use directly in UI)
+ *   2. provly-color-roles.css   — Semantic color tokens (USE THESE in UI)
+ *   3. provly-effects.css       — Shadow and elevation effects
+ *   4. provly-spacing.css       — Spacing scale
+ *   5. provly-border-radius.css — Border radius scale
+ *   6. provly-typography.css    — Typography system
+ * 
+ * USAGE IN HTML:
+ *   <link rel="stylesheet" href="css/provly-design-system.css">
+ * 
+ * USAGE IN CSS:
+ *   @import url("./provly-design-system.css");
+ * 
+ * EXAMPLE — Applying Color Roles (the correct approach):
+ *   .button-primary {
+ *     background-color: var(--provly-role-provly-primary);
+ *     color: var(--provly-role-provly-on-primary);
+ *   }
+ * 
+ *   .card {
+ *     background-color: var(--provly-role-provly-primary-container);
+ *     color: var(--provly-role-provly-on-primary-container);
+ *     border-radius: var(--provly-radius-provly-medium);
+ *     padding: var(--provly-spacing-provly-base-spacing);
+ *     box-shadow: var(--provly-shadow-provly-soft-shadow);
+ *   }
+ * 
+ *   .error-message {
+ *     background-color: var(--provly-role-provly-error-container);
+ *     color: var(--provly-role-provly-on-error-container);
+ *   }
+ * 
+ * ⚠️  DO NOT reference --primitive-* or --provly-primitive-* variables
+ *     directly in your component CSS. Always use --role-* or --provly-role-*
+ *     tokens instead. The primitive layer exists solely as the foundation
+ *     that color roles reference internally.
+ *
+ * Auto-generated on: 2026-09-05T09:54:02.365Z
+ * Source: provly-design-tokens.tokens.json
+ * Generator: design-tokens-to-css.js
+ *
+ * DO NOT EDIT MANUALLY — regenerate from design tokens instead.
+ * ======================================================================== */
+
+@import url('./provly-primitives.css');
+@import url('./provly-color-roles.css');
+@import url('./provly-effects.css');
+@import url('./provly-spacing.css');
+@import url('./provly-border-radius.css');
+@import url('./provly-typography.css');

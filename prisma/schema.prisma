@@ -1,0 +1,60 @@
+// Prisma schema for the Provly Assessment 1 authentication slice.
+// One database access method (Prisma), PostgreSQL only.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              String   @id @default(cuid())
+  email           String   @unique // R1.8: database-level uniqueness, not just app checks
+  name            String
+  passwordHash    String
+  emailVerified   Boolean  @default(false)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  sessions            Session[]
+  verificationCodes   VerificationCode[]
+  passwordResetTokens PasswordResetToken[]
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+}
+
+model VerificationCode {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  code      String // stored raw so it can be shown in DB evidence; short-lived
+  expiresAt DateTime // R1.5: expiry is enforced in the DB row, not just the UI countdown
+  usedAt    DateTime?
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+}
+
+model PasswordResetToken {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tokenHash String @unique // R1.7: single-use, time-limited; only the hash is stored
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+}

@@ -1,0 +1,173 @@
+/* Load the Provly design system via its single combined file only. */
+@import url('../css/provly-design-system.css');
+
+/* Base */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+body {
+  background-color: var(--provly-role-provly-neutral-container);
+  color: var(--provly-role-provly-on-neutral-container);
+  font-family: var(--provly-type-provly-body-medium-font-family);
+  font-size: var(--provly-type-provly-body-medium-font-size);
+  font-weight: var(--provly-type-provly-body-medium-font-weight);
+  line-height: var(--provly-type-provly-body-medium-line-height);
+}
+
+/* Auth screen shell */
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--provly-spacing-provly-base-spacing);
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 26rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--provly-spacing-provly-base-spacing);
+  padding: var(--provly-spacing-provly-extra-large-spacing);
+  background-color: var(--provly-role-provly-neutral-container);
+  border-radius: var(--provly-radius-provly-large);
+  box-shadow: var(--provly-shadow-provly-soft-shadow);
+}
+
+.auth-title {
+  margin: 0;
+  font-family: var(--provly-type-provly-title-large-font-family);
+  font-size: var(--provly-type-provly-title-large-font-size);
+  font-weight: var(--provly-type-provly-title-large-font-weight);
+  line-height: var(--provly-type-provly-title-large-line-height);
+  letter-spacing: var(--provly-type-provly-title-large-letter-spacing);
+}
+
+.auth-subtitle {
+  margin: 0;
+  color: var(--provly-role-provly-neutral-variant);
+  font-size: var(--provly-type-provly-body-large-font-size);
+}
+
+/* Form */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--provly-spacing-provly-extra-small-spacing);
+}
+
+.label {
+  font-family: var(--provly-type-provly-label-large-font-family);
+  font-size: var(--provly-type-provly-label-large-font-size);
+  font-weight: var(--provly-type-provly-label-large-font-weight);
+  line-height: var(--provly-type-provly-label-large-line-height);
+}
+
+.input {
+  width: 100%;
+  padding: var(--provly-spacing-provly-small-spacing) var(--provly-spacing-provly-base-spacing);
+  background-color: var(--provly-role-provly-neutral-container);
+  color: var(--provly-role-provly-on-neutral-container);
+  border: 1px solid var(--provly-role-provly-neutral-variant);
+  border-radius: var(--provly-radius-provly-medium);
+  font-family: inherit;
+  font-size: var(--provly-type-provly-body-medium-font-size);
+}
+
+/* R1.11 — visible focus state, using a role token with real contrast. */
+.input:focus-visible,
+.input:focus {
+  outline: 2px solid var(--provly-role-provly-primary);
+  outline-offset: 1px;
+  border-color: var(--provly-role-provly-primary);
+}
+
+.input-error {
+  border-color: var(--provly-role-provly-error);
+}
+
+/* R1.11 — error text and inputs are paired with a programmatically-bound label. */
+.error-text {
+  color: var(--provly-role-provly-error);
+  font-size: var(--provly-type-provly-body-small-font-size);
+}
+
+.helper-text {
+  color: var(--provly-role-provly-neutral-variant);
+  font-size: var(--provly-type-provly-body-small-font-size);
+}
+
+.alert {
+  padding: var(--provly-spacing-provly-small-spacing) var(--provly-spacing-provly-base-spacing);
+  border-radius: var(--provly-radius-provly-medium);
+  font-size: var(--provly-type-provly-body-small-font-size);
+}
+
+.alert-error {
+  background-color: var(--provly-role-provly-error-container);
+  color: var(--provly-role-provly-on-error-container);
+}
+
+.alert-success {
+  background-color: var(--provly-role-provly-success-container);
+  color: var(--provly-role-provly-on-success-container);
+}
+
+/* Buttons */
+.button {
+  display: inline-block;
+  padding: var(--provly-spacing-provly-small-spacing) var(--provly-spacing-provly-base-spacing);
+  background-color: var(--provly-role-provly-primary);
+  color: var(--provly-role-provly-on-primary);
+  border: none;
+  border-radius: var(--provly-radius-provly-medium);
+  font-family: var(--provly-type-provly-label-large-font-family);
+  font-size: var(--provly-type-provly-label-large-font-size);
+  font-weight: var(--provly-type-provly-label-large-font-weight);
+  line-height: var(--provly-type-provly-label-large-line-height);
+  cursor: pointer;
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--provly-role-provly-primary);
+  outline-offset: 1px;
+}
+
+.button-secondary {
+  background-color: transparent;
+  color: var(--provly-role-provly-primary);
+  border: 1px solid var(--provly-role-provly-primary);
+}
+
+.button[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.link {
+  color: var(--provly-role-provly-primary);
+  font-size: var(--provly-type-provly-body-small-font-size);
+}
+
+.link-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--provly-spacing-provly-extra-small-spacing);
+}
+
+/* Dashboard */
+.dash-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--provly-spacing-provly-base-spacing);
+}
