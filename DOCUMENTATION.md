@@ -29,18 +29,49 @@ Clone the repository:```bash
 
 ## Section 3: The Flow, Step By Step
 
-<!-- Narrative, not a list. For each step: what the user does, what the
-     frontend sends, what the server does with it, naming actual files/routes. -->
+Sign-up and verification. A new user fills in their name, email, and password on the sign-up screen (app/(auth)/signup/page.tsx). On submit, the frontend sends this data to POST /api/auth/signup (app/api/auth/signup/route.ts). The server first checks whether an account already exists for that email — if it exists and is already verified, the request is rejected with "This email is already registered. Please sign in instead."; if it exists but was never verified, or doesn't exist at all, the server hashes the password (lib/auth/password.ts), creates the user record, generates a verification code, and redirects the user to the verification screen (app/(auth)/verify-email/page.tsx). The user enters the code, which is sent to POST /api/auth/verify-email; the server checks the code against the stored value and its expiry (10 minutes), and on success, creates a session and sends the user to the dashboard.
 
-*(To be written once the flow is fully implemented — walk through signup → verification → dashboard, then sign-in, then password reset, naming real files each time.)*
+Sign-in. A returning user enters email and password on app/(auth)/signin/page.tsx, which sends the credentials to POST /api/auth/signin. The server compares the submitted password against the stored bcrypt hash and, on a match, creates a new session before redirecting to the dashboard. Repeated failed attempts are rate-limited (lib/auth/rateLimit.ts) — after several incorrect tries, the endpoint returns a 429 status with "Too many attempts. Please try again later."
+
+Forgot / reset password. The user requests a reset from app/(auth)/forgot-password/page.tsx, which calls POST /api/auth/forgot-password. The server generates a single-use, time-limited reset token (30 minutes) and returns a reset link. Following that link loads app/(auth)/reset-password/page.tsx, where the user sets a new password; this submits to POST /api/auth/reset-password, which verifies the token is still valid and unused before updating the password hash and invalidating the token.
+
+Protected dashboard. app/dashboard/page.tsx checks for a valid session (lib/auth/session.ts) before rendering. A signed-out user who navigates to /dashboard directly is redirected to sign-in rather than seeing any dashboard content — confirmed directly by testing this exact case.
+
+Sign-out. Triggered from the dashboard, this ends the current session, after which the dashboard becomes unreachable again until a new sign-in occurs.
+
 
 ## Section 4: The Data Model
 
-<!-- Every table, one line each on what it holds. For decision-bearing
-     columns: why that type, why that constraint. Then: which constraints
-     make an invalid state impossible? -->
+User — one row per account.
 
-*(To be written once the Prisma schema is final.)*
+id (String, cuid): a non-sequential, non-guessable identifier. Chosen over an auto-incrementing integer specifically to avoid IDs that are easy to enumerate or guess.
+email (String, @unique): enforced unique at the database level, not just checked in application code. This is the real backstop behind R1.8 — even if a future code change accidentally skips the application-level existence check, the database itself will refuse a duplicate insert.
+passwordHash (String): only ever the bcrypt hash, never the plain password.
+emailVerified (Boolean, default false): the flag that distinguishes a completed account from an in-progress signup. This is the exact field the duplicate-email bug (Section 6) was missing a check against — the original signup handler only asked "does this email exist?" instead of "does this email exist and is it verified?"
+
+Session — one row per active login.
+
+token (String, @unique): the value stored client-side; uniqueness at the database level prevents any possibility of two sessions colliding on the same token.
+userId with onDelete: Cascade: if a user were ever deleted, their sessions are automatically removed with them — no orphaned session rows left pointing at a nonexistent user.
+expiresAt (DateTime): session lifetime enforced by checking this field server-side on every protected request.
+
+VerificationCode — one row per email-verification attempt.
+
+code (String): stored in plain form deliberately, not hashed. This was a conscious trade-off, not an oversight — a verification code is short-lived (10 minutes), single-purpose, and only proves someone can read the account's email, unlike a password which grants full account control. Storing it in plain form also made it possible to show it directly in the database as required evidence for this assessment.
+expiresAt / usedAt: expiry is a real database value, not just a countdown shown in the UI (R1.5) — confirmed directly by testing that an expired code is rejected server-side.
+
+PasswordResetToken — one row per reset request.
+
+tokenHash (String, @unique): unlike the verification code, this is hashed before storage. The reasoning is the opposite trade-off: a reset token grants the ability to take over the account entirely by setting a new password, so if the database were ever exposed, an unhashed token would hand over immediate account access. A verification code carries much lower stakes by comparison.
+expiresAt (30 minutes) / usedAt: same single-use, time-limited pattern as the verification code (R1.7).
+
+Which constraints make an invalid state impossible:
+
+User.email @unique — makes two accounts sharing one email impossible at the database level, regardless of what application code does or fails to check. This is the real safety net behind the bug found and fixed in Section 6.
+Session.token @unique and PasswordResetToken.tokenHash @unique — make token collision between two different sessions or reset requests impossible.
+The onDelete: Cascade foreign keys on all three child tables make an orphaned row (one pointing to a user that no longer exists) impossible.
+
+Honest limitation: expiry itself is not enforced by a database-level constraint — there's no rule stopping usedAt from theoretically being set after expiresAt at the schema level. That check currently lives entirely in application code (the route handlers compare expiresAt against the current time before accepting a code or token). This was confirmed working correctly through direct testing, but it's worth being explicit that the enforcement is at the application layer, not the database layer, for this slice.
 
 ## Section 5: The Concepts
 
