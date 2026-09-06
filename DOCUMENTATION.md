@@ -2,9 +2,6 @@
 
 ## Section 1: What This Is
 
-<!-- Two paragraphs, no more. First: what the slice does, plain language.
-     Second: what's deliberately not included, and why. -->
-
 This project is a standalone authentication system — create account, sign in, forgot password, reset password, and email verification — ending at a placeholder dashboard. A new user can register, verify their email, and reach the dashboard; a returning user can sign in; a user who forgets their password can reset it.
 
 This is deliberately not the full Provly application. There is no landing page, no marketing page, no dashboard features beyond a signed-in user's name and a sign-out button, no profile editing, no settings, no social sign-in, and no two-factor authentication. The scope is limited on purpose, so that the authentication logic itself — not surrounding features — is what gets evaluated.
@@ -74,8 +71,6 @@ The onDelete: Cascade foreign keys on all three child tables make an orphaned ro
 Honest limitation: expiry itself is not enforced by a database-level constraint — there's no rule stopping usedAt from theoretically being set after expiresAt at the schema level. That check currently lives entirely in application code (the route handlers compare expiresAt against the current time before accepting a code or token). This was confirmed working correctly through direct testing, but it's worth being explicit that the enforcement is at the application layer, not the database layer, for this slice.
 
 ## Section 5: The Concepts
-
-<!-- Required concepts: password hashing, rate limiting, client vs server validation, session management, token/code expiry, idempotency, database constraints, protected routes. Each gets: What it is / Why it's needed / How I implemented it / What I chose against, and why. -->
 Password Hashing
 
 What it is. Hashing turns a password into a fixed-length string that can't be reversed back into the original. When someone signs in, the password they typed is hashed and compared against the stored hash — the real password is never stored anywhere.
@@ -84,7 +79,7 @@ Why it is needed. If the database were ever read by someone who shouldn't have i
 
 How I implemented it. bcrypt via the bcryptjs package, cost factor 10, in lib/auth/password.ts:
 
-typescript
+```typescript
 const SALT_ROUNDS = 10;
 
 export async function hashPassword(plain: string): Promise<string> {
@@ -94,6 +89,7 @@ export async function hashPassword(plain: string): Promise<string> {
 export async function verifyPassword(plain: string, hash: string): Promise<boolean> {
   return bcrypt.compare(plain, hash);
 }
+```
 
 I also added a small extra protection beyond the base requirement: DUMMY_PASSWORD_HASH, a pre-computed hash of a fixed dummy string, used during sign-in so that comparison timing stays roughly constant whether or not the submitted email actually exists — this prevents someone from figuring out which emails are registered just by measuring how fast the server responds.
 
@@ -107,7 +103,7 @@ Why it is needed. Without it, someone could send thousands of sign-in attempts a
 
 How I implemented it. A shared, in-memory sliding-window limiter in lib/auth/rateLimit.ts, used across all four required routes (signup, signin, forgot-password, resend-code):
 
-typescript
+```typescript
 const cutoff = now() - windowMs;
 let hits = (buckets.get(key) ?? []).filter((t) => t > cutoff);
 
@@ -118,6 +114,7 @@ if (hits.length >= limit) {
 hits.push(now());
 buckets.set(key, hits);
 return { allowed: true, remaining: limit - hits.length, retryAfterSeconds: 0 };
+```
 
 Each key tracks an array of attempt timestamps; anything outside the current window is dropped before counting. Confirmed working directly by testing: repeated failed sign-in attempts returned a 429 status after the limit was reached.
 
@@ -131,14 +128,14 @@ Why it is needed. The browser can always be bypassed entirely — I proved this 
 
 How I implemented it. One shared Zod schema set in lib/validation/authSchemas.ts, imported and used identically on both the page components and the API route handlers — there is no second, separate validation implementation anywhere:
 
-typescript
+```typescript
 import { PASSWORD_MAX_BYTES } from '@/lib/auth/password';
 
 export const passwordSchema = z
   .string({ required_error: 'Password is required' })
   .min(8, 'Password must be at least 8 characters')
   .max(PASSWORD_MAX_BYTES, `Password must be at most ${PASSWORD_MAX_BYTES} characters`);
-
+```
 Worth calling out specifically: passwordSchema imports its maximum length directly from lib/auth/password.ts, the same constant used during hashing. bcrypt silently ignores anything past 72 bytes — so without this shared constant, two different long passwords sharing the same first 72 bytes could both hash to the same value, allowing either one to sign in. Sharing the constant makes that scenario structurally impossible rather than relying on remembering to keep two numbers in sync by hand.
 
 What I chose against, and why. I could have written two separate validation implementations — simple HTML attributes (required, minlength) on the client, and independent hand-written checks on the server. I rejected this because two implementations inevitably drift apart over time: someone updates one and forgets the other, and the bug that results is exactly the dangerous kind — it passes casual testing because the client silently blocked the bad case, while the server would have quietly accepted it if reached directly.
@@ -151,7 +148,7 @@ Why it is needed. Without sessions, every single page load or action would requi
 
 How I implemented it. A database-backed session, not a JWT. The cookie holds nothing meaningful — just an opaque random token — with the real session record (userId, expiresAt) stored server-side in the Session table:
 
-typescript
+```typescript
 function sessionCookieOptions() {
   return {
     httpOnly: true,
@@ -161,6 +158,7 @@ function sessionCookieOptions() {
     maxAge: Math.floor(SESSION_TTL_MS / 1000),
   };
 }
+```
 
 httpOnly prevents any client-side JavaScript from reading the cookie at all, closing off the main way a session token gets stolen via XSS. secure is conditional on the environment rather than hardcoded true — this was a deliberate practical choice: hardcoding it would break local development, since a real browser won't send a secure cookie over plain http://localhost. sameSite: 'lax' blocks the cookie from being sent on cross-site requests (protecting against CSRF) while still allowing it to be sent on a normal top-level link click, which matters because the password-reset flow depends on a link landing correctly from an email.
 
@@ -186,14 +184,15 @@ Why it is needed. Without it, a simple double-click on the submit button could c
 
 How I implemented it. Two layers, not one — because a single check has a real gap the second layer closes. First, an application-level check before creating a user: look up the email, and if it exists, branch on whether it's already verified rather than blindly treating every existing email the same way (this is the exact fix from the Section 6 bug). Second, a database-level backstop for the case where two requests arrive close enough together that both pass the existence check before either has actually inserted its row — a genuine race condition no application-level check alone can fully close:
 
-typescript
-} catch (error) {
+```typescript
+catch (error) {
   // P2002 = unique constraint violation on email (R1.8). Treat a concurrent
   // duplicate create as idempotent success (R1.9).
   const code = (error as { code?: string }).code;
   if (code === 'P2002') {
     return NextResponse.json({ ok: true, message: 'Account already exists.' });
   }
+  ```
 
 When the database rejects a concurrent duplicate insert, that's caught and treated as an expected, idempotent outcome — not an error.
 
@@ -212,12 +211,13 @@ Why it is needed. Without a server-side check, someone could reach the dashboard
 
 How I implemented it. DashboardPage is a Next.js Server Component — the session check runs on the server before any markup is returned:
 
-typescript
+```typescript
 export default async function DashboardPage() {
   const user = await getSessionUser();
   if (!user) {
     redirect('/signin');
   }
+  ```
 
 Because this check happens server-side before the response is generated, an unauthenticated request never receives any dashboard content as part of the response — not even briefly.
 
@@ -231,10 +231,11 @@ Why it is needed. Application code can have bugs, be skipped, race against itsel
 
 How I implemented it. email String @unique on the User model, enforced by PostgreSQL itself:
 
-prisma
+```prisma
 model User {
   email String @unique // R1.8: database-level uniqueness, not just app checks
 }
+```
 
 This constraint is what actually closes the concurrent-signup race condition described in the Idempotency section — even in the moment two requests both pass the application's existence check, the database itself refuses the second insert.
 
@@ -260,13 +261,16 @@ Fix: switched to selecting the text with a mouse drag and using the right-click 
 
 ## Section 7: What This Slice Does Not Handle
 
-<!-- Honest limitations. What breaks at scale, what's needed before real
-     users, what was left out as out-of-brief vs. out-of-time. -->
+Rate limiting does not survive a server restart or scale across multiple instances. The in-memory sliding-window limiter (lib/auth/rateLimit.ts) resets whenever the process restarts, and if this were ever deployed across more than one server instance, each instance would track its own separate counts — effectively multiplying the real limit. Moving to a shared store (Redis or the database itself) would be required before this could run at any real scale. This was a deliberate scope decision for a 14-18 hour slice, not an oversight.
 
-*(To be written near the end, once the full picture is clear.)*
+There is no real email delivery. Verification codes and reset links are logged to the console and returned directly in the API response when not in production (devCode), rather than sent through an actual email provider. This was explicitly out of scope for demonstrating the authentication logic itself, but a real deployment would need SMTP or a transactional email service wired in before any of this could reach a real user.
+
+Expiry is enforced in application code, not by a database constraint. As noted in Section 4, nothing in the schema itself prevents a row's usedAt from theoretically being set after its expiresAt. The route handlers correctly check this on every use, confirmed through direct testing, but the enforcement lives one layer up from the database rather than in the schema itself.
+
+There is no automated test suite. All verification for this assessment was done manually — direct database inspection, a curl request bypassing the browser, and deliberately triggering the rate limit — rather than through a written test suite that could be re-run automatically. This was sufficient to produce the required evidence for this assessment, but a growing codebase would need real automated tests before manual verification alone became unsustainable.
+
+An unused, generic color-role system still exists in the design token source. The original Figma file contains a second, non-Provly color system (generic blue-based roles) alongside the real Provly-branded tokens. It's explicitly never referenced anywhere in this slice's code, and AGENTS.md forbids the agent from ever using it, but it hasn't been deleted from the source Figma file itself.
 
 ## Section 8: If I Built This Again
 
-<!-- One paragraph. The single biggest thing you'd do differently, and why. -->
-
-*(To be written last.)*
+The single biggest thing I'd do differently is wiring in a real email provider from the start, instead of relying on the console-logged and devCode-returned verification codes I used for this assessment. Everything about the authentication logic itself — hashing, expiry, rate limiting, session handling — genuinely works, but without real email delivery, none of it is actually usable by a real person yet. A verification code that only exists in a dev-mode API response or a server log isn't a working feature from a user's point of view; it's a stand-in for one. If I rebuilt this, I'd treat "the code actually arrives in an inbox" as part of the core requirement from day one, not something to defer past the boundary of the assessment.
