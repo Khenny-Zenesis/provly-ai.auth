@@ -91,6 +91,8 @@ export async function verifyPassword(plain: string, hash: string): Promise<boole
 }
 ```
 
+![Password stored as bcrypt hash](evidence/password-hash-db.png)
+
 I also added a small extra protection beyond the base requirement: DUMMY_PASSWORD_HASH, a pre-computed hash of a fixed dummy string, used during sign-in so that comparison timing stays roughly constant whether or not the submitted email actually exists — this prevents someone from figuring out which emails are registered just by measuring how fast the server responds.
 
 What I chose against, and why. SHA-256 and similar general-purpose hashes are fast by design — which is exactly what makes them wrong for passwords, since speed is what lets an attacker try millions of guesses per second against a stolen hash. Argon2 is a defensible, arguably stronger modern alternative, but I chose bcrypt because it's well-supported and well-understood in this stack. I also specifically chose the pure-JavaScript bcryptjs package over native bcrypt — native bcrypt requires platform-specific compilation during install, which risks breaking the "runs from a fresh clone in under 10 minutes" requirement on a machine without the right build tools already set up. bcryptjs avoids that risk entirely at a small performance cost that doesn't matter at this scale.
@@ -115,6 +117,8 @@ hits.push(now());
 buckets.set(key, hits);
 return { allowed: true, remaining: limit - hits.length, retryAfterSeconds: 0 };
 ```
+
+![Rate limit 429 response](evidence/rate-limit-429.png)
 
 Each key tracks an array of attempt timestamps; anything outside the current window is dropped before counting. Confirmed working directly by testing: repeated failed sign-in attempts returned a 429 status after the limit was reached.
 
@@ -173,6 +177,9 @@ What it is. Verification codes and password reset tokens are only valid for a li
 Why it is needed. A code or token that never expires is a permanent liability: if one is ever intercepted, glimpsed over someone's shoulder, or left in an old email, it would remain usable indefinitely. A short expiry window limits how long that exposure actually matters.
 
 How I implemented it. Every code and token carries its own expiresAt timestamp in the database, set at creation time (new Date(Date.now() + CODE_TTL_MS) for codes, similarly for reset tokens). Crucially, expiry is checked by comparing this stored timestamp against the current time at the moment of use — not by trusting a countdown shown in the UI, which is exactly why it's enforceable even if the client displaying that countdown is bypassed entirely. This was confirmed directly by testing: entering an expired code returns a rejection with "verification expired, request for new one," and the database shows the row's usedAt remains null while expiresAt has already passed.
+
+
+![Verification codes with expiresAt and usedAt](evidence/verification-code-expiry-db.png)
 
 What I chose against, and why. I could have relied only on the client-side countdown timer to disable the input once time was up, without a real server-side check. I rejected this immediately — a countdown is purely cosmetic if the server will still accept the value after it visually expires. The same principle used throughout this slice applies here: anything the client shows is a convenience, never the actual enforcement.
 
